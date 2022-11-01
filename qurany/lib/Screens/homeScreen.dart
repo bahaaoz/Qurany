@@ -18,21 +18,21 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with TickerProviderStateMixin {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     LocalController getController = LocalController();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        ElevatedButton(
-          onPressed: () {
-            print(quran.getAudioURLBySurah(1));
-          },
-          child: Text("data"),
-        ),
         Container(
-          margin: const EdgeInsets.only(right: 10, left: 10, top: 30),
+          margin: const EdgeInsets.only(right: 10, left: 10, top: 10),
           child: Text(
             "Welcome to Qurany".tr,
             style: GoogleFonts.trispace(
@@ -45,13 +45,13 @@ class _HomeState extends State<Home> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
         Consumer<ProviderController>(
           builder: (context, controller, child) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
-              height: 150,
+              margin: const EdgeInsets.symmetric(horizontal: 10),
+              height: 140,
               width: MediaQuery.of(context).size.width - 20,
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -180,7 +180,7 @@ class _HomeState extends State<Home> {
 
   ListView listTileArabic() {
     return ListView.builder(
-      itemCount: 113,
+      itemCount: 114,
       itemBuilder: (context, index) {
         int indexGood = index + 1;
         return Consumer<ProviderController>(
@@ -256,12 +256,12 @@ class _HomeState extends State<Home> {
 
   Container numberOfSurah(int index) {
     return Container(
-      height: 45,
-      width: 45,
+      height: 50,
+      width: 50,
       child: Stack(
         children: [
           const Icon(
-            size: 45,
+            size: 50,
             Icons.hexagon_outlined,
             color: Color.fromARGB(255, 137, 87, 193),
           ),
@@ -270,7 +270,7 @@ class _HomeState extends State<Home> {
             index.toString(),
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 17,
+              fontSize: 16,
             ),
           ))
         ],

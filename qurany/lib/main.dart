@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:qurany/Controllers/providerController.dart';
 import 'package:qurany/Loacalization/localController.dart';
@@ -15,7 +14,6 @@ SharedPreferences? sharedPreferences;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
   sharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp());
 }
@@ -51,9 +49,15 @@ class _MyAppState extends State<MyApp> {
               : ThemeData(
                   scaffoldBackgroundColor: lightColor,
                   brightness: Brightness.light,
+                  tabBarTheme: const TabBarTheme(
+                    labelColor: Colors.black,
+                    labelStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   appBarTheme: AppBarTheme(
                     iconTheme: IconThemeData(color: darkColor),
-                    titleTextStyle: TextStyle(color: Colors.black),
+                    titleTextStyle: const TextStyle(color: Colors.black),
                     color: lightColor,
                   ),
                 ),

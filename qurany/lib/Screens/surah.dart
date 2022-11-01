@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:quran/quran.dart' as quran;
@@ -60,23 +59,37 @@ class _SurahState extends State<Surah> {
             ),
           ),
           body: Container(
-            margin: EdgeInsets.only(
-              top: 20,
-            ),
+            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
             child: ListView(
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      quran.basmala,
-                      style: GoogleFonts.readexPro(
-                        textStyle: TextStyle(fontSize: 28),
-                      ),
-                    ),
+                    controller.verseNumber == 9 || controller.verseNumber == 1
+                        ? Container()
+                        : Container(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 6,
+                              horizontal: 15,
+                            ),
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(
+                                  20,
+                                ),
+                              ),
+                            ),
+                            child: Text(
+                              quran.basmala,
+                              style: GoogleFonts.readexPro(
+                                textStyle: const TextStyle(fontSize: 28),
+                              ),
+                            ),
+                          ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -86,19 +99,51 @@ class _SurahState extends State<Surah> {
                       for (int i = 0;
                           i < quran.getVerseCount(controller.verseNumber);
                           i++) {
-                        str += quran.getVerse(controller.verseNumber, i + 1,
-                            verseEndSymbol: true);
+                        str += " ${quran.getVerse(
+                          controller.verseNumber,
+                          i + 1,
+                          verseEndSymbol: true,
+                        )}";
                       }
                       return Text(
                         str,
                         style: GoogleFonts.readexPro(
                           textStyle: TextStyle(
-                              fontSize: fontSize, wordSpacing: 2, height: 2),
+                            fontWeight: FontWeight.w400,
+                            fontSize: fontSize,
+                            wordSpacing: 0,
+                            height: 2,
+                          ),
                         ),
                         textAlign: TextAlign.justify,
                       );
                     },
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 15,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            20,
+                          ),
+                        ),
+                      ),
+                      child: Text(
+                        "صدق الله العظيم",
+                        style: GoogleFonts.readexPro(
+                          textStyle: const TextStyle(fontSize: 28),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
