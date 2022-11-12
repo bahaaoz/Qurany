@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'dart:math' as math;
 import 'package:quran/quran.dart' as quran;
 import 'package:provider/provider.dart';
@@ -117,7 +118,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
           },
         ),
         Expanded(
-          child: getController.initLocal == Locale("en")
+          child: getController.initLocal == const Locale("en")
               ? listTileEnglish()
               : listTileArabic(),
         )
@@ -127,7 +128,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
 
   ListView listTileEnglish() {
     return ListView.builder(
-      itemCount: 113,
+      itemCount: 114,
       itemBuilder: (context, index) {
         int indexGood = index + 1;
         return Consumer<ProviderController>(
@@ -140,7 +141,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               child: ListTile(
                 onTap: () {
                   controller.verseChose(indexGood);
-                  Get.to(Surah());
+                  Get.to(() => Surah());
                   sharedPreferences!.setInt("lastread", indexGood);
                 },
                 title: Text(
@@ -163,7 +164,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
                 leading: numberOfSurah(indexGood),
                 trailing: Text(
-                  quran.getSurahNameArabic(indexGood),
+                  indexGood == 111
+                      ? "المسد"
+                      : quran.getSurahNameArabic(indexGood),
                   style: GoogleFonts.readexPro(
                     textStyle: const TextStyle(
                       color: Color.fromARGB(255, 121, 65, 218),
@@ -197,7 +200,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                   sharedPreferences!.setInt("lastread", indexGood);
                 },
                 title: Text(
-                  quran.getSurahNameArabic(indexGood),
+                  indexGood == 111
+                      ? "المسد"
+                      : quran.getSurahNameArabic(indexGood),
                   style: GoogleFonts.readexPro(
                     textStyle: const TextStyle(
                       color: Color.fromARGB(255, 121, 65, 218),

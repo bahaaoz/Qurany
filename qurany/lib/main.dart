@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:qurany/Controllers/providerController.dart';
 import 'package:qurany/Loacalization/localController.dart';
@@ -70,13 +71,9 @@ class _MyAppState extends State<MyApp> {
                   child: Column(
                     children: [
                       Container(
-                        height: 210,
-                        width: 280,
-                        child: Image.asset(
-                          "images/person1.png",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                          height: 210,
+                          width: 280,
+                          child: Lottie.asset("images/reading.json")),
                       const SizedBox(
                         height: 20,
                       ),
